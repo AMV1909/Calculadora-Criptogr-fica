@@ -1,5 +1,5 @@
 import random
-from modules import mod_exp, is_prime, max_common_divisor, inverse_multiplicative
+from modules import mod_exp, is_prime, text_to_binary, binary_to_text, max_common_divisor, inverse_multiplicative
 
 def _11():
     print("1.1 Calcular el módulo de dos números a mod n = b")
@@ -146,16 +146,29 @@ def _32():
     d = inverse_multiplicative(e, phi)
 
     # Mensaje a cifrar
-    m = int(input("\nIngrese el mensaje a cifrar: "))
+    m = input("\nIngrese el mensaje a cifrar: ")
+    print("Mensaje a cifrar: ", m)
+
+    # Convertir mensaje a binario
+    m_binary = text_to_binary(m)
+
+    # Convertir binario a entero
+    m_int = int(m_binary, 2)
 
     # Cifrar mensaje
-    c = mod_exp(m, e, n)
+    c = mod_exp(m_int, e, n)
 
     # Descifrar mensaje
-    m2 = mod_exp(c, d, n)
+    m_int = mod_exp(c, d, n)
+
+    # Convertir entero a binario
+    m_binary = bin(m_int)[2:]
+
+    # Convertir binario a texto
+    m_text = binary_to_text(m_binary)
 
     # Verificar que el mensaje descifrado sea igual al original
-    if (m != m2):
+    if (m != m_text):
         print("Error en el descifrado")
         exit()
 
@@ -168,7 +181,7 @@ def _32():
     print("Valor privado d: ", d)
     print("Mensaje a cifrar: ", m)
     print("Mensaje cifrado: ", c)
-    print("Mensaje descifrado: ", m2)
+    print("Mensaje descifrado: ", m_text)
 
     print("\nIngrese cualquier tecla para continuar...")
     input()

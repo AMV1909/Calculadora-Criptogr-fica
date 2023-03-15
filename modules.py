@@ -19,6 +19,14 @@ def mod_exp(base, exp, modulus):
         exp = exp // 2
     return result
 
+# Convertir texto a binario en ASCII
+def text_to_binary(text):
+    return ''.join(format(ord(i), '08b') for i in text)
+
+# Convertir binario a texto en ASCII
+def binary_to_text(binary):
+    return ''.join(chr(int(binary[i:i+8], 2)) for i in range(0, len(binary), 8))
+
 # Calcula el máximo común divisor
 def max_common_divisor(a, b):
     while b != 0:
