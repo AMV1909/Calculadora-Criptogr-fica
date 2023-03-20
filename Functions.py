@@ -1,7 +1,7 @@
 import random
 import string
 from math import gcd, ceil
-from modules import is_prime, inv
+from Modules import is_prime, inv
 
 
 def _11():
@@ -99,18 +99,19 @@ def _15():
     b = int(input("Ingrese un valor para b: "))
 
     # Calcular inverso multiplicativo
-    c = 0
+    c = []
 
+    print("\nTabla de multiplicaciones:")
     for i in range(1, b):
-        if ((a * i) % b == 1):
-            c = i
-            break
+        d = a * i % b
+        c.append(d)
+        print(str(a) + " * " + str(i) + " % " + str(b) + " = " + str(d))
 
     # Verificar si existe inverso multiplicativo
-    if (c == 0):
-        print("\nNo existe inverso multiplicativo")
+    if (1 in c):
+        print("\nEl inverso multiplicativo de", a, "mod", b, "es", c.index(1) + 1)
     else:
-        print("\nEl inverso multiplicativo de", a, "mod", b, "es", c)
+        print("\nNo existe inverso multiplicativo")
 
     print("\nIngrese cualquier tecla para continuar...")
     input()
@@ -424,14 +425,14 @@ def _26():
     # Verificar que a y b sean primos entre sí y que estén en el rango [0, 26]
     while (True):
         while (True):
-            a = int(input("Ingrese el valor de a para la llave (Debe ser primo con 26): "))
+            a = int(input("Ingrese el valor de a para la llave (Debe ser coprimo con 26): "))
             if (a < 0 or a > 26):
                 print("Valor de a fuera de rango")
             else:
                 break
         
         while (True):
-            b = int(input("Ingrese el valor de b para la llave: "))
+            b = int(input("Ingrese el valor de b para la llave (Debe ser coprimo con 26): "))
             if (b < 0 or b > 26):
                 print("Valor de b fuera de rango")
             else:
